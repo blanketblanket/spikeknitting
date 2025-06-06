@@ -4,12 +4,13 @@ plus functions to convert the generated pattern to human-readable strings.
 
 '''
 
+
 def generate_pattern(b_height: int, b_dist: int) -> list:
     '''
     Returns a list representing a knitting pattern for given bumpiness params
     '''
     pattern = []
-    for n in range(1+b_dist):
+    for n in range(2):
         row = []
         row.append((' ', b_height))
         row.append(('k', b_dist * 2 + b_height*2 + 2))
@@ -24,19 +25,18 @@ def generate_pattern(b_height: int, b_dist: int) -> list:
         row.append(('sk2p', 1))
         row.append(('k', b_height - 1 + b_dist - n))
         pattern.append(row)
-    for n in range(1+b_dist):
+    for n in range(2):
         row = []
         row.append(('k', b_dist * 2 + b_height*2 + 2))
         pattern.append(row)
     for n in range(b_height):
         row = []
         row.append((' ', n))
-        row.append(('k', b_height - 1 + b_dist - n))
+        row.append(('k', b_height - 1 - n))
         row.append(('sk2p', 1))
         row.append(('k', b_height - 1 + b_dist))
         row.append(('kyok', 1))
-        if n>0:
-            row.append(('k', n))
+        row.append(('k', n+b_dist))
         pattern.append(row)
     return pattern
 
